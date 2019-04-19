@@ -1,0 +1,32 @@
+version : '3'
+
+services :
+
+  api:
+
+    container_name : password_reset_api
+
+    build: .
+
+    volumes:
+      - .:/app/
+      - /app/node_modules/
+
+    ports:
+      - "9000:9000"
+
+    # provided a environment for dev set up.
+    env_file:
+      - .env
+    
+    environment:
+      - MONGO_HOST=mongodb://localhost/pass_reset
+
+    links:
+      - mongo # used to link our mongo container to our main container
+
+  mongo:
+    container_name : mongo_db
+    image: "mongo:latest" # here we are pulling mongo letest image from docerHub for it.
+    ports:
+      - "27017:27017"

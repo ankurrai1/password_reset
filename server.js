@@ -1,5 +1,9 @@
-const PORT = 9000;
-
 const app=require("./app.js");
 
-app.listen(PORT, () => console.log(`app listening on port ${PORT}!`));
+const PORT = app.get("port");
+const environment = app.get("env");
+
+app.listen(PORT,() => {
+    console.log(`app listening on port ${PORT}!`)
+    console.log(`app is running in ${environment}`);
+});
