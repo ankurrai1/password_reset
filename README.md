@@ -34,3 +34,7 @@ To run the tests
 ```
 docker-compose exec api npm test
 ```
+To see coverage of test 
+```
+docker-compose exec api npm run coverage
+```
