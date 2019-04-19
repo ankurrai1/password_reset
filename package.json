@@ -1,0 +1,19 @@
+{
+  "name": "password_reset",
+  "version": "1.0.0",
+  "description": "here password reset is done with help of smtp",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankurrai1/password_reset.git"
+  },
+  "author": "ankurrai1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankurrai1/password_reset/issues"
+  },
+  "homepage": "https://github.com/ankurrai1/password_reset#readme"
+}
