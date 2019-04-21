@@ -60,6 +60,11 @@ app.use(function (req, res, next) {
 app.use(logger("dev"));
 
 
+import {
+    user
+} from "./src/routes";
+
+
 // for testing if the server is running
 app.get('/', function(req, res){ 
     res.send('<html>all is well...</html>');

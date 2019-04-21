@@ -1,11 +1,6 @@
 version : '3'
 
 services :
-  web: 
-    container_name: password_reset_web
-    build: web/.
-    volumes:
-
   api:
 
     container_name : password_reset_api
@@ -13,8 +8,8 @@ services :
     build: api/.
 
     volumes:
-      - .:api/app/
-      - api/app/node_modules/
+      - .:/app/
+      - /app/node_modules/
 
     ports:
       - "9000:9000"
