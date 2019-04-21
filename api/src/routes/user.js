@@ -1,13 +1,11 @@
-import { Router } from "express";
-import { check, param } from "express-validator/check";
-import * as asyncHandler from "express-async-handler";
+const express = require("express");
+const asyncHandler = require("express-async-handler");
+const check = require("express-validator/check").check;
+const User = require("../handlers/User")
+const Auth = require("../handlers/Auth");
+const validator = require("../helper/validator");
 
-import { User, Auth } from "../handlers";
-// import { validator } from "../helper";
-
-//suddenly i learnd we can use import in our js file it is implimented for node .
-
-const router = Router();
+var router = express.Router();
 
 router.use(Auth.authJwt);
 
@@ -52,4 +50,4 @@ router.delete("/:id", [
     .custom(value => validator.objectId(value))
 ], asyncHandler(User.remove));
 
-export default router;
+module.exports = router;

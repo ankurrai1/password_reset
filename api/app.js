@@ -59,11 +59,11 @@ app.use(function (req, res, next) {
 });
 app.use(logger("dev"));
 
+const user = require("./src/routes/user");
+const auth = require("./src/routes/auth");
 
-import {
-    user
-} from "./src/routes";
-
+app.use("/user", user);
+app.use("/login", auth);
 
 // for testing if the server is running
 app.get('/', function(req, res){ 

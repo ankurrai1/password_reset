@@ -1,11 +1,9 @@
-import { User, UserSchema } from "../models";
-import { Request, Response, NextFunction } from "express";
-import { validationResult } from "express-validator/check";
-import { matchedData } from "express-validator/filter";
+const User = require("../models/User");
+const validationResult = require("express-validator/check");
+const matchedData = require("express-validator/filter");
+const tokenHelper = require("../helper");
 
-import { tokenHelper } from "../helper";
-
-export const create = async (req, res) => {
+exports.create = async (req, res) => {
     const errors = await validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.mapped() });
@@ -25,7 +23,7 @@ export const create = async (req, res) => {
     }
 };
 
-export const all = async (req, res)=> {
+exports.all = async (req, res)=> {
     try {
         const users = await User.find({});
         return res.status(200).json({ users });
@@ -35,7 +33,7 @@ export const all = async (req, res)=> {
 };
 
 
-export const byId = async (req, res) => {
+exports.byId = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.mapped() });
@@ -50,7 +48,7 @@ export const byId = async (req, res) => {
     }
 };
 
-export const byField = async (req, res) => {
+exports.byField = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.mapped() });
@@ -68,7 +66,7 @@ export const byField = async (req, res) => {
     }
 };
 
-export const update = async (req, res)=> {
+exports.update = async (req, res)=> {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.mapped() });
@@ -83,7 +81,7 @@ export const update = async (req, res)=> {
     }
 };
 
-export const remove = async (req, res)=> {
+exports.remove = async (req, res)=> {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.mapped() });

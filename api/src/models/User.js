@@ -1,6 +1,6 @@
-import * as mongoose from "mongoose";
-import * as bcrypt from "bcryptjs";
-import * as validator from "validator";
+const mongoose =require("mongoose");
+const bcrypt =require("bcryptjs");
+
 const Isemail = require("isemail");
 
 const UserSchema = new mongoose.Schema({
@@ -20,18 +20,7 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Password is required"],
         minlength: [6, "Password must be at least 6 characters long"],
     },
-    role: {
-        type: String,
-        validate: {
-            validator: function(role) {
-                const enumType = ["CUSTOMER", "PROVIDER", "ADMIN","DRIVER"];
-                const valid = enumType.filter(value => value === role);
-                return valid.length === 1;
-            },
-            message: "Not a valid role"
-        },
-        required: true,
-    },
+    
     resetPasswordToken: String,
     resetPasswordExpires: Date
 }, { timestamps: true });
@@ -53,4 +42,4 @@ UserSchema.methods.comparePassword = async function (userPassword) {
 };
 
 const User = mongoose.model("User", UserSchema);
-export default User;
+module.exports = User;
