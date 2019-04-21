@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "mocha --recurcive",
-    "coverage": "nyc --reporter=html --reporter=text mocha --recursive"
+    "coverage": "nyc --reporter=html --reporter=text mocha --recursive && start coverage/index.html"
   },
   "repository": {
     "type": "git",
@@ -19,10 +19,19 @@
   },
   "homepage": "https://github.com/ankurrai1/password_reset#readme",
   "dependencies": {
+    "bluebird": "^3.5.4",
     "chai": "^4.2.0",
+    "compression": "^1.7.4",
+    "connect-mongo": "^2.0.3",
+    "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "express-validator": "^5.3.1",
+    "helmet": "^3.16.0",
+    "lusca": "^1.6.1",
     "mocha": "^6.1.4",
+    "mongoose": "^5.5.2",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.11",
     "nyc": "^14.0.0",
