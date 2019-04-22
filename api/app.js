@@ -57,7 +57,12 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Expose-Headers", "Authorization");
     next();
 });
-app.use(logger("dev"));
+
+logger.token('date', function(){
+    return new Date().toISOString()
+})
+
+app.use(logger(':date[web] :method  :remote-addr :status :response-time ms :url'));
 
 const user = require("./src/routes/user");
 const auth = require("./src/routes/auth");

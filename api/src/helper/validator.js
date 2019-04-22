@@ -1,21 +1,21 @@
-const Types = require("mongoose");
-const model = require("mongoose");
-const modelNames = require("mongoose");
-const validator  = require("validator");
-const PhoneNumber = require("awesome-phonenumber");
+const {Types, model, modelNames} = require("mongoose");
+const validator = require("validator");
+const {PhoneNumber} = require("awesome-phonenumber");
 
-exports.objectId = (value) => {
+const objectId = (value) => {
     if (!Types.ObjectId.isValid(value)) {
         throw new Error("Not a valid ID");
     }
     return true;
 };
 
-exports.fields = (value, modelName, nested = false) => {
+const fields = (value, modelName, nested = false) => {
     if (!value || !Object.keys(value).length) {
         throw new Error("Field is empty");
     }
-    if (modelNames().indexOf(modelName) === -1 ) {
+    try {
+        model(modelName)
+    } catch (error) {
         throw new Error("Not a valid model");
     }
     if (nested) {
@@ -34,10 +34,11 @@ exports.fields = (value, modelName, nested = false) => {
     return true;
 };
 
-exports.checkData = (data, modelName, save = true) => {
+const checkData = (data, modelName, save = true) => {
     if (!data || !Object.keys(data).length) {
         throw new Error("Data sent is empty");
     }
+    
     if (save) {
         Object.keys(model(modelName).schema.obj).forEach(key => {
             if (!data.hasOwnProperty(key)) {
@@ -58,15 +59,8 @@ exports.checkData = (data, modelName, save = true) => {
             }
             if (model(modelName).schema.obj[key].hasOwnProperty("validate")) {
                 const { validate } = model(modelName).schema.obj[key];
-                if (field.path === "phoneNumber") {
-                    const phoneNumber = new PhoneNumber(data[key], data.location.country);
-                    if (!phoneNumber.isValid()) {
-                        throw new Error(validate.message);
-                    }
-                } else {
-                    if (!validate.validator(data[key])) {
-                        throw new Error(validate.message);
-                    }
+                if (!validate.validator(data[key])) {
+                    throw new Error(validate.message);
                 }
             }
             if (model(modelName).schema.obj[key].hasOwnProperty("minlength")) {
@@ -79,3 +73,9 @@ exports.checkData = (data, modelName, save = true) => {
     });
     return true;
 };
+
+module.exports = {
+    objectId,
+    fields,
+    checkData
+}

@@ -1,7 +1,7 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const check = require("express-validator/check").check;
-const User = require("../handlers/User")
+const { check }= require("express-validator/check");
+const User  = require("../handlers/User")
 const Auth = require("../handlers/Auth");
 const validator = require("../helper/validator");
 
