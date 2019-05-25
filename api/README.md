@@ -10,7 +10,6 @@ This is the open source express js based app to example of reset password
 
 Before install modules
 ```
-cd API-Orahi
 npm install
 ```
 
