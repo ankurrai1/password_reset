@@ -5,7 +5,7 @@ This is the open source express js based app to example of reset password
 #### Requirements
 
 - docker
-- Nodejs 8 < 
+- Nodejs 8 (or more)
 
 ### Instruction
 
