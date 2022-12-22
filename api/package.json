@@ -33,7 +33,7 @@
     "express-validator": "^5.3.1",
     "helmet": "^3.16.0",
     "isemail": "^3.2.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lusca": "^1.6.1",
     "mocha": "^6.1.4",
     "mongoose": "^5.5.2",
